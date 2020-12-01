@@ -2,6 +2,11 @@ import Axios from "axios";
 import { User } from "../model/user";
 import { APIs } from "./apis";
 
+const fetchUserByName(service: Repository, name: string)
+{
+  return service.getUserByName(name);
+}
+
 const getUsersGitLab = async (userName: string): Promise<User[]> => {
 
   // const res = await Axios.get(`${APIs.REPOSITORY_GIT_LAB}/users?username=${userName}`);
@@ -22,7 +27,7 @@ const getUsersGitLab = async (userName: string): Promise<User[]> => {
 }
 const getUsersGitHub = async (userName: string): Promise<User[]> => {
 
-  const res = await Axios.get(`${APIs.REPOSITORY_GIT_HUB}/search/users?q=${userName}`);
+  const res = await Axios.get(`${APIs.REPOSITORY_GIT_HUB}/search/users?q=${userName}`&limit=5);
   const lista: any[] = res.data.items
   const listUserGitHub = lista.filter(item => item.type === 'User').slice(0, 5).map(item => {
     return ({

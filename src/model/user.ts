@@ -3,14 +3,12 @@ export class User {
   nameUser: string;
   img_avatar: any;
   link: string;
-  gitlab: boolean;
-  github: boolean;
+  service: string;
 
   constructor() {
     this.nameUser = '';
     this.link = '';
-    this.gitlab = false;
-    this.github = false;
+    this.service = '';
   }
 
   static parseItem(data: any): User {
